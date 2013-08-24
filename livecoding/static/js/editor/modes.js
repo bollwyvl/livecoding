@@ -7,6 +7,7 @@ var modes = (function () {
 	var	list = [
 		{ name: 'html'      , doc: null, mime: 'text/html', default: '<!-- html goes here -->' },
 		{ name: 'javascript', doc: null, mime: 'text/javascript', default: '/* javascript goes here */' },
+		{ name: 'coffeescript', doc: null, mime: 'text/coffeescript', default: '###\ncoffeescript goes here\n###'},
 		{ name: 'css'       , doc: null, mime: 'text/css', default: '/* css goes here */' },
 		{ name: 'json'      , doc: null, mime: 'application/json', default: '{ }' }
 	];
@@ -15,6 +16,9 @@ var modes = (function () {
 
 		// clear javascript first
 		switchTo('javascript');
+		aigua.codeMirror.setValue('');
+    
+		switchTo('coffeescript');
 		aigua.codeMirror.setValue('');
 
 		switchTo('html');

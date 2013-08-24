@@ -84,6 +84,7 @@ var aigua = (function () {
 
 					var html = data.files['water.html'];
 					var javascript = data.files['water.js'];
+					var coffeescript = data.files['water.coffee'];
 					var css = data.files['water.css'];
 					var json = data.files['water.json'];
 
@@ -123,6 +124,11 @@ var aigua = (function () {
 					modes.switchTo('javascript');
 					if (javascript) {
 						aigua.codeMirror.setValue(javascript.content);
+					}
+
+					modes.switchTo('coffeescript');
+					if (coffeescript) {
+						aigua.codeMirror.setValue(coffeescript.content);
 					}
 
 					// switch to mode
@@ -227,6 +233,19 @@ var aigua = (function () {
 
 						// run the javascript code
 						frames[0].livecoding.renderCode(code);
+
+					break;
+
+					case 'coffeescript':
+						// replace html
+						$('body #livecoding-main', $('iframe').contents()).html(
+							(modes.get('html').doc && modes.get('html').doc.getValue()) || ''
+						);
+						code = CoffeeScript.compile(code);
+						// run the javascript code
+						frames[0].livecoding.renderCode(code);
+						
+						modes.get('javascript').doc.setValue(code);
 
 					break;
 
@@ -338,6 +357,7 @@ var aigua = (function () {
 
 					switch (modes.getCurrent().name) {
 
+						case 'coffeescript':
 						case 'javascript':
 							hex = token.string.substring(1, token.string.length - 1);
 							aigua.currentSelectionStart = {line: cursor.line, ch: token.start + 1};

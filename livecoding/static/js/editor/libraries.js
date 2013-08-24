@@ -19,6 +19,11 @@ var libraries = (function () {
 			"version": "none"
 		},
 		{
+			"name": "CoffeeScript",
+			"obj": "CoffeeScript",
+			"version": "1.6.3"
+		},
+		{
 			"name": "d3",
 			"obj": "d3",
 			"version": "3.1.10"
